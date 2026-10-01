@@ -1,7 +1,11 @@
 import { Webhook } from "svix"
+import db from "@/config/connectDB"
+import { usersTable } from "@/app/drizzle/Schema"
+import { eq } from "drizzle-orm"
 
 export async function POST(req) {
 
+    console.log("Webhook Request Received");
     try {
 
         const whook = new Webhook(process.env.CLERK_WEBHOOK_SECRET)
@@ -15,12 +19,15 @@ export async function POST(req) {
             "svix-signature": req.headers.get("svix-signature")
         })
 
-        const { type, data } = event
+        console.log("Event : ", event);
+
+        const { type, data } = event;
 
         switch (type) {
 
             case 'user.created':
 
+                console.log("User Created Event Data:", data);
                 const userData = {
                     _id: data.id,
                     email: data.email_addresses[0].email_address,
@@ -28,8 +35,9 @@ export async function POST(req) {
                     image: data.image_url,
                 }
 
-                // save it to a database
-                console.log(userData);
+                // Save it to a database
+                await db.insert(usersTable).values(userData)
+
                 Response.json({})
                 break;
 
@@ -41,15 +49,17 @@ export async function POST(req) {
                     image: data.image_url
                 }
 
-                // Update it to a database
-                console.log(updatedUserData);
+                // Update it in a database
+                await db.update(usersTable).set(updatedUserData).where(eq(usersTable._id, data.id))
+
                 Response.json({})
                 break;
 
             case 'user.deleted':
 
                 // remove them from a database
-                console.log(`User with ID ${data.id} has been deleted.`);
+                await db.delete(usersTable).where(eq(usersTable._id, data.id));
+
                 Response.json({})
                 break;
 
