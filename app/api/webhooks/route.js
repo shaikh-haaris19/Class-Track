@@ -18,9 +18,12 @@ export async function POST(req) {
             "svix-signature": req.headers.get("svix-signature"),
         });
 
+        const { type, data } = event;
+
         return Response.json({
             success: true,
-            event: event
+            type: type,
+            data: data
         });
 
     } catch (error) {
