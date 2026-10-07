@@ -13,10 +13,12 @@ export async function POST(req) {
 
         const whook = new Webhook(process.env.CLERK_WEBHOOK_SECRET)
 
-        console.log("Instance of Webhook Created");
+        console.log("Instance of Webhook Created", whook);
 
         //Verify the request
         const body = await req.text()
+
+        console.log("Request Body : ", body);
 
         const event = whook.verify(body, {
             "svix-id": req.headers.get("svix-id"),
@@ -80,7 +82,7 @@ export async function POST(req) {
     } catch (error) {
         console.log("Webhook Error =================================")
         console.error("Error processing webhook:", error.message);
-        return Response.json({ error: "Webhook processing failed" }, { status: 500 });
+        return Response.json({ error: "Webhook processing failed", error: error.message }, { status: 500 });
 
     }
 
