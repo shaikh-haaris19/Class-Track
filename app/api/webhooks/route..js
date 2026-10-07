@@ -38,8 +38,7 @@ export async function POST(req) {
                 // Save it to a database
                 await db.insert(usersTable).values(userData)
 
-                Response.json({})
-                break;
+                return Response.json({})
 
             case 'user.updated':
 
@@ -52,16 +51,14 @@ export async function POST(req) {
                 // Update it in a database
                 await db.update(usersTable).set(updatedUserData).where(eq(usersTable._id, data.id))
 
-                Response.json({})
-                break;
+                return Response.json({})
 
             case 'user.deleted':
 
                 // remove them from a database
                 await db.delete(usersTable).where(eq(usersTable._id, data.id));
 
-                Response.json({})
-                break;
+                return Response.json({})
 
             default:
                 console.log(`Unhandled event type: ${type}`);
@@ -72,7 +69,7 @@ export async function POST(req) {
     } catch (error) {
 
         console.error("Error processing webhook:", error);
-        res.json({ error: "Webhook processing failed" }, { status: 500 });
+        return Response.json({ error: "Webhook processing failed" }, { status: 500 });
 
     }
 
