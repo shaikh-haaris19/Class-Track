@@ -1,13 +1,19 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { useClerk, useUser } from "@clerk/nextjs";
+import { useTheme } from "next-themes"
+import { useEffect } from "react";
 
 export default function Home() {
 
   const { openSignIn, signOut } = useClerk();
   const { user } = useUser();
 
-  console.log("User : ", user);
+  const { setTheme } = useTheme()
+
+  useEffect(() => {
+    setTheme("light");
+  }, []);
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-between p-24">
