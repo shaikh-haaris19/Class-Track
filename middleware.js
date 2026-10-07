@@ -2,8 +2,12 @@ import { clerkMiddleware } from '@clerk/nextjs/server';
 
 export default clerkMiddleware(async (auth, req) => {
 
-    // Protect Every Route
-    await auth.protect();
+    if (
+        req.nextUrl.pathname === '/dashboard' ||
+        req.nextUrl.pathname.startsWith('/dashboard')
+    ) {
+        await auth.protect();
+    }
 
 });
 
