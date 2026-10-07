@@ -5,6 +5,8 @@ import { eq } from "drizzle-orm"
 
 export async function POST(req) {
 
+    console.log("Webhook Request Received");
+
     try {
 
         console.log("Webhook Start");
@@ -77,7 +79,7 @@ export async function POST(req) {
 
     } catch (error) {
         console.log("Webhook Error =================================")
-        console.error("Error processing webhook:", error);
+        console.error("Error processing webhook:", error.message);
         return Response.json({ error: "Webhook processing failed" }, { status: 500 });
 
     }
