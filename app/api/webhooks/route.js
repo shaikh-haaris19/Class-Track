@@ -5,10 +5,13 @@ import { eq } from "drizzle-orm"
 
 export async function POST(req) {
 
-    console.log("Webhook Request Received");
     try {
 
+        console.log("Webhook Start");
+
         const whook = new Webhook(process.env.CLERK_WEBHOOK_SECRET)
+
+        console.log("Instance of Webhook Created");
 
         //Verify the request
         const body = await req.text()
@@ -19,15 +22,17 @@ export async function POST(req) {
             "svix-signature": req.headers.get("svix-signature")
         })
 
-        console.log("Event : ", event);
+        console.log(event)
 
         const { type, data } = event;
+
+        console.log("Event Type : ", type);
+        console.log("Event Data : ", data);
 
         switch (type) {
 
             case 'user.created':
 
-                console.log("User Created Event Data:", data);
                 const userData = {
                     _id: data.id,
                     email: data.email_addresses[0].email_address,
@@ -35,8 +40,12 @@ export async function POST(req) {
                     image: data.image_url,
                 }
 
+                console.log("User Created : ", userData);
+
                 // Save it to a database
                 await db.insert(usersTable).values(userData)
+
+                console.log("User Created in Database");
 
                 return Response.json({})
 
@@ -67,7 +76,7 @@ export async function POST(req) {
         }
 
     } catch (error) {
-
+        console.log("Webhook Error =================================")
         console.error("Error processing webhook:", error);
         return Response.json({ error: "Webhook processing failed" }, { status: 500 });
 
