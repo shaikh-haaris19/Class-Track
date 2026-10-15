@@ -6,7 +6,7 @@ export default clerkMiddleware(async (auth, req) => {
         req.nextUrl.pathname === '/dashboard' ||
         req.nextUrl.pathname.startsWith('/dashboard/')
     ) {
-        auth.protect()
+        await auth.protect()
     }
     
 });

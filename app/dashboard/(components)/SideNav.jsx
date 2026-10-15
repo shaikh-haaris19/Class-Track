@@ -4,10 +4,12 @@ import Image from 'next/image'
 import { GraduationCapIcon, LayoutIcon, Hand, SettingsIcon } from 'lucide-react'
 import { UserButton } from "@clerk/nextjs";
 import { useUser } from "@clerk/nextjs";
+import { useRouter } from "next/navigation";
 
 const SideNav = () => {
 
     const { user } = useUser();
+    const router = useRouter();
 
     const navItems = [
         {
@@ -43,8 +45,9 @@ const SideNav = () => {
             <Image
                 src="/logo.png"
                 alt="Logo"
-                width={150}
+                width={120}
                 height={50}
+                className="ml-8"
             />
 
             <hr className="my-5" />
@@ -53,7 +56,7 @@ const SideNav = () => {
             {
                 navItems.map(item => {
                     return (
-                        <div key={item.id} className="flex items-center gap-3 p-4 text-slate-500 hover:bg-blue-700 hover:text-white cursor-pointer rounded-lg">
+                        <div onClick={() => router.push(item.link)} key={item.id} className="flex items-center gap-3 p-4 text-slate-500 hover:bg-blue-700 hover:text-white cursor-pointer rounded-lg">
                             <item.icon size={20} />
                             <span>{item.name}</span>
                         </div>
@@ -61,9 +64,12 @@ const SideNav = () => {
                 })
             }
 
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 bottom-5 fixed p-2">
                 <UserButton />
-                <span className="text-sm text-slate-500">{user?.firstName} {user?.lastName}</span>
+                <div className="flex flex-col">
+                    <p className="text-xs text-slate-500">{user?.firstName} {user?.lastName}</p>
+                    <p className="text-xs text-slate-500">{user?.emailAddresses[0]?.emailAddress}</p>
+                </div>
             </div>
 
         </div>

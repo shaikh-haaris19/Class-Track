@@ -6,3 +6,8 @@ export const usersTable = mysqlTable('users_table', {
     email: varchar({ length: 250 }).notNull().unique(),
     image: varchar({ length: 1000 }).notNull(),
 });
+
+export const gradesTable = mysqlTable('grades_table', {
+    _id: varchar({ length: 100 }).primaryKey().notNull(),
+    grade: varchar({ length: 100 }).notNull(),
+});

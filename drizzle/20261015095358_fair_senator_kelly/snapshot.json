@@ -1,0 +1,135 @@
+{
+  "version": "6",
+  "dialect": "mysql",
+  "id": "f31441f7-8108-40b7-a8b3-70fff0bc16c1",
+  "prevIds": [
+    "25ce0ca2-54e9-4c0e-a077-f285b8f8f2d1"
+  ],
+  "ddl": [
+    {
+      "name": "grades_table",
+      "entityType": "tables"
+    },
+    {
+      "name": "users_table",
+      "entityType": "tables"
+    },
+    {
+      "type": "varchar(100)",
+      "notNull": true,
+      "autoIncrement": false,
+      "default": null,
+      "onUpdateNow": false,
+      "onUpdateNowFsp": null,
+      "charSet": null,
+      "collation": null,
+      "generated": null,
+      "name": "_id",
+      "entityType": "columns",
+      "table": "grades_table"
+    },
+    {
+      "type": "varchar(100)",
+      "notNull": true,
+      "autoIncrement": false,
+      "default": null,
+      "onUpdateNow": false,
+      "onUpdateNowFsp": null,
+      "charSet": null,
+      "collation": null,
+      "generated": null,
+      "name": "grade",
+      "entityType": "columns",
+      "table": "grades_table"
+    },
+    {
+      "type": "varchar(100)",
+      "notNull": true,
+      "autoIncrement": false,
+      "default": null,
+      "onUpdateNow": false,
+      "onUpdateNowFsp": null,
+      "charSet": null,
+      "collation": null,
+      "generated": null,
+      "name": "_id",
+      "entityType": "columns",
+      "table": "users_table"
+    },
+    {
+      "type": "varchar(100)",
+      "notNull": true,
+      "autoIncrement": false,
+      "default": null,
+      "onUpdateNow": false,
+      "onUpdateNowFsp": null,
+      "charSet": null,
+      "collation": null,
+      "generated": null,
+      "name": "name",
+      "entityType": "columns",
+      "table": "users_table"
+    },
+    {
+      "type": "varchar(250)",
+      "notNull": true,
+      "autoIncrement": false,
+      "default": null,
+      "onUpdateNow": false,
+      "onUpdateNowFsp": null,
+      "charSet": null,
+      "collation": null,
+      "generated": null,
+      "name": "email",
+      "entityType": "columns",
+      "table": "users_table"
+    },
+    {
+      "type": "varchar(1000)",
+      "notNull": true,
+      "autoIncrement": false,
+      "default": null,
+      "onUpdateNow": false,
+      "onUpdateNowFsp": null,
+      "charSet": null,
+      "collation": null,
+      "generated": null,
+      "name": "image",
+      "entityType": "columns",
+      "table": "users_table"
+    },
+    {
+      "columns": [
+        "_id"
+      ],
+      "name": "PRIMARY",
+      "table": "grades_table",
+      "entityType": "pks"
+    },
+    {
+      "columns": [
+        "_id"
+      ],
+      "name": "PRIMARY",
+      "table": "users_table",
+      "entityType": "pks"
+    },
+    {
+      "columns": [
+        {
+          "value": "email",
+          "isExpression": false
+        }
+      ],
+      "isUnique": true,
+      "using": null,
+      "algorithm": null,
+      "lock": null,
+      "nameExplicit": false,
+      "name": "users_table_email_unique",
+      "table": "users_table",
+      "entityType": "indexes"
+    }
+  ],
+  "renames": []
+}

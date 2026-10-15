@@ -24,8 +24,6 @@ export async function POST(req) {
 
             case 'user.created':
 
-                console.log(data);
-
                 const userData = {
                     _id: data.id,
                     email: data.email_addresses[0].email_address,
@@ -35,8 +33,6 @@ export async function POST(req) {
 
                 // Save it to a database
                 let res = await db.insert(usersTable).values(userData)
-
-                console.log(res);
 
                 return Response.json({})
 
