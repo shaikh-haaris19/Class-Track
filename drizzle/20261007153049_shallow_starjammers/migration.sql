@@ -1,1 +1,0 @@
-ALTER TABLE `users_table` MODIFY COLUMN `image` varchar(1000) NOT NULL; 

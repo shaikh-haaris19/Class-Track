@@ -1,9 +1,92 @@
 {
   "version": "5",
   "dialect": "mysql",
-  "id": "04ff9b8f-3c00-4cd0-a84e-47cedc6ab91c",
+  "id": "ba5d8270-99ce-4e8d-bc1f-4315d934f40d",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
+    "grades_table": {
+      "name": "grades_table",
+      "columns": {
+        "_id": {
+          "name": "_id",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "grade": {
+          "name": "grade",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {
+        "grades_table__id": {
+          "name": "grades_table__id",
+          "columns": [
+            "_id"
+          ]
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraint": {}
+    },
+    "students_table": {
+      "name": "students_table",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "studentName": {
+          "name": "studentName",
+          "type": "varchar(20)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "studentGrade": {
+          "name": "studentGrade",
+          "type": "varchar(10)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "contactNumber": {
+          "name": "contactNumber",
+          "type": "varchar(10)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "studentAddress": {
+          "name": "studentAddress",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {
+        "students_table_id": {
+          "name": "students_table_id",
+          "columns": [
+            "id"
+          ]
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraint": {}
+    },
     "users_table": {
       "name": "users_table",
       "columns": {
@@ -30,7 +113,7 @@
         },
         "image": {
           "name": "image",
-          "type": "varchar(500)",
+          "type": "varchar(1000)",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
