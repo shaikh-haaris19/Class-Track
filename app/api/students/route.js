@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 import db from "@/config/connectDB";
 import { studentsTable } from "@/app/drizzle/Schema";
 
+
+// ADD NEW STUDENT ROUTE
 export async function POST(request) {
 
     try {
@@ -24,4 +26,21 @@ export async function POST(request) {
         return NextResponse.json({ error: "Failed to add student" }, { status: 500 });
     }
 
+}
+
+
+// GET ALL STUDENTS ROUTE
+export async function GET(request) {
+
+    try {
+
+        const response = await db.select().from(studentsTable);
+
+        return NextResponse.json(response);
+
+    } catch (error) {
+        console.error("Error fetching students:", error);
+        return NextResponse.json({ error: "Failed to fetch students" }, { status: 500 });
+    }
+    
 }

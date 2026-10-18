@@ -16,11 +16,13 @@ import { useState } from 'react'
 import { useForm } from "react-hook-form"
 import axios from 'axios'
 import { toast } from "@/components/ui/toast"
+import { Loader2 } from "lucide-react"
 
 const AddNewStudent = () => {
 
     const [open, setOpen] = useState(false);
     const [gradesList, setGradesList] = useState([]);
+    const [loading, setLoading] = useState(false);
 
     const {
         register,
@@ -44,9 +46,11 @@ const AddNewStudent = () => {
 
     const onSubmit = async (data) => {
 
+        setLoading(true);
+
         try {
 
-            const response = await axios.post('/api/addStudent', data);
+            const response = await axios.post('/api/students', data);
 
             toast.add({
                 type: "success",
@@ -64,6 +68,9 @@ const AddNewStudent = () => {
                 description: "Failed to add student. Please try again.",
                 priority: "high",
             })
+
+        } finally {
+            setLoading(false);
         }
 
     }
@@ -119,11 +126,11 @@ const AddNewStudent = () => {
                             {errors.studentAddress && <span>This field is required</span>}
                         </div>
 
-
-
                         <DialogFooter>
-                            <Button onClick={() => setOpen(false)} className="bg-gray-200 hover:bg-gray-300 text-gray-800 text-md px-6" variant="outline">Cancel</Button>
-                            <Button onClick={() => console.log("Save changes")} className="bg-black hover:bg-gray-800 text-white text-md px-6" type="submit">Save changes</Button>
+                            <Button type="button" onClick={() => setOpen(false)} className="bg-gray-200 hover:bg-gray-300 text-gray-800 text-md px-6" variant="outline">Cancel</Button>
+                            <Button onClick={() => console.log("Save changes")} className="bg-black hover:bg-gray-800 text-white text-md px-6" type="submit" disabled={loading}>
+                                {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : "Save changes"}
+                            </Button>
                         </DialogFooter>
 
                     </form>
