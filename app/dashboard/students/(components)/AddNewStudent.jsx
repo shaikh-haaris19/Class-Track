@@ -18,7 +18,7 @@ import axios from 'axios'
 import { toast } from "@/components/ui/toast"
 import { Loader2 } from "lucide-react"
 
-const AddNewStudent = () => {
+const AddNewStudent = ({ refreshData }) => {
 
     const [open, setOpen] = useState(false);
     const [gradesList, setGradesList] = useState([]);
@@ -59,6 +59,7 @@ const AddNewStudent = () => {
             })
 
             reset();
+            refreshData();
             setOpen(false);
 
         } catch (error) {

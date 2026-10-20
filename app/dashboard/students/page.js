@@ -15,7 +15,6 @@ const Student = () => {
 
       const response = await axios.get('/api/students');
       setStudents(response.data);
-      console.log("Students fetched successfully:", response.data);
 
     } catch (error) {
 
@@ -38,10 +37,10 @@ const Student = () => {
     <div className="p-7">
 
       <h2 className="text-4xl font-bold flex justify-between items-center">Student
-        <AddNewStudent />
+        <AddNewStudent refreshData={getAllStudents} />
       </h2>
 
-      <StudentsListTable studentsList={students} />
+      <StudentsListTable studentsList={students} refreshData={getAllStudents} />
 
     </div>
   )

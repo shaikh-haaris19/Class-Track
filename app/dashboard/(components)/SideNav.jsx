@@ -4,12 +4,13 @@ import Image from 'next/image'
 import { GraduationCapIcon, LayoutIcon, Hand, SettingsIcon } from 'lucide-react'
 import { UserButton } from "@clerk/nextjs";
 import { useUser } from "@clerk/nextjs";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 
 const SideNav = () => {
 
     const { user } = useUser();
     const router = useRouter();
+    const pathname = usePathname();
 
     const navItems = [
         {
@@ -56,7 +57,7 @@ const SideNav = () => {
             {
                 navItems.map(item => {
                     return (
-                        <div onClick={() => router.push(item.link)} key={item.id} className="flex items-center gap-3 p-4 text-slate-500 hover:bg-blue-700 hover:text-white cursor-pointer rounded-lg">
+                        <div onClick={() => router.push(item.link)} key={item.id} className={`flex items-center text-md gap-3 p-4 m-1 text-slate-500 hover:bg-blue-700 hover:text-white cursor-pointer rounded-lg ${pathname === item.link && "bg-blue-700 text-white"}`}>
                             <item.icon size={20} />
                             <span>{item.name}</span>
                         </div>
