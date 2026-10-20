@@ -64,7 +64,7 @@ const Attendance = () => {
 
 
             {/* Student Attendace Table */}
-            <AttendanceGrid attendanceData={attendanceData} />
+            <AttendanceGrid attendanceData={attendanceData} selectedMonth={selectedMonth} />
 
         </div>
     )

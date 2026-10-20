@@ -44,7 +44,7 @@ const MonthSelection = ({ selectedMonth }) => {
                         <Calendar
                             mode="single"
                             month={month}
-                            onMonthChange={(value) => { selectedMonth(value); setMonth(value) }}
+                            onMonthChange={(value) => { selectedMonth(value); setMonth(value); console.log("Selected Month:", value) }}
                             className="flex flex-1 justify-center"
                         />
 
