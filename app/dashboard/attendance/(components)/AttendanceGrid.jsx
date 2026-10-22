@@ -18,10 +18,12 @@ const AttendanceGrid = ({ attendanceData, selectedMonth }) => {
     const [rowData, setRowData] = useState([]);
 
     const [colDefs, setColDefs] = useState([
-        { field: "studentId" },
-        { field: "name" }
+        { field: "studentId", filter: true },
+        { field: "name", filter: true }
     ]);
 
+
+    //GET UNIQUE RECORDS FROM ATTENDANCE DATA BASED ON STUDENT ID
     const getUniqueRecords = () => {
 
         const uniqueRecords = [];
@@ -38,6 +40,8 @@ const AttendanceGrid = ({ attendanceData, selectedMonth }) => {
         return uniqueRecords;
     }
 
+
+    // MARK ATTENDANCE FOR STUDENTS
     const MarkAttendance = async (day, studentId, presentStatus) => {
 
         try {
@@ -109,6 +113,8 @@ const AttendanceGrid = ({ attendanceData, selectedMonth }) => {
 
     }, [attendanceData]);
 
+
+    // CHECKS IF STUDENT IS PRESENT ON A SPECIFIC DAY
     const isPresent = (studentId, date) => {
         const record = attendanceData.find(record => record.studentId === studentId && date === record.day);
         return record ? true : false;
@@ -124,6 +130,9 @@ const AttendanceGrid = ({ attendanceData, selectedMonth }) => {
                 onCellValueChanged={(e) => {
                     MarkAttendance(e.colDef.field, e.data.studentId, e.newValue);
                 }}
+                pagination={10}
+                paginationPageSize={10}
+                paginationPageSizeSelector={[10, 25, 100]}
             />
 
         </div>

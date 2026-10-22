@@ -26,10 +26,10 @@ export async function GET(request) {
             .leftJoin(attendanceTable,
                 and(
                     eq(studentsTable.id, attendanceTable.studentId),
-                    eq(studentsTable.studentGrade, grade),
                     eq(attendanceTable.date, month)
                 )
-            );
+            )
+            .where(eq(studentsTable.studentGrade, grade));
 
 
         return NextResponse.json(response);
