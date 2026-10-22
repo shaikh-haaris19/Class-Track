@@ -5,6 +5,7 @@ import { themeQuartz } from "ag-grid-community";
 import moment from 'moment';
 import axios from 'axios';
 import { toast } from '@/components/ui/toast';
+import { getUniqueRecords } from '../../(components)/GetUniqueRecords';
 
 const AttendanceGrid = ({ attendanceData, selectedMonth }) => {
 
@@ -21,24 +22,6 @@ const AttendanceGrid = ({ attendanceData, selectedMonth }) => {
         { field: "studentId", filter: true },
         { field: "name", filter: true }
     ]);
-
-
-    //GET UNIQUE RECORDS FROM ATTENDANCE DATA BASED ON STUDENT ID
-    const getUniqueRecords = () => {
-
-        const uniqueRecords = [];
-        const uniqueRecordsSet = new Set();
-
-        attendanceData.forEach(record => {
-
-            if (!uniqueRecordsSet.has(record.studentId)) {
-                uniqueRecordsSet.add(record.studentId);
-                uniqueRecords.push(record);
-            }
-        });
-
-        return uniqueRecords;
-    }
 
 
     // MARK ATTENDANCE FOR STUDENTS
@@ -91,7 +74,7 @@ const AttendanceGrid = ({ attendanceData, selectedMonth }) => {
 
     useEffect(() => {
 
-        const uniqueRecords = getUniqueRecords();
+        const uniqueRecords = getUniqueRecords(attendanceData);
         setRowData(uniqueRecords);
 
         daysArray.forEach(date => {

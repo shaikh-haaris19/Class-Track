@@ -1,7 +1,7 @@
 "use client"
 import React, { useState } from 'react'
-import MonthSelection from '@/app/dashboard/attendance/(components)/MonthSelection'
-import GradeSelect from './(components)/GradeSelect'
+import MonthSelection from '@/app/dashboard/(components)/MonthSelection'
+import GradeSelect from '../(components)/GradeSelect'
 import { Button } from '@/components/ui/button'
 import moment from 'moment'
 import axios from 'axios'

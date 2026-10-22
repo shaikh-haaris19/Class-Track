@@ -11,7 +11,7 @@ import {
 import { CalendarDays } from 'lucide-react'
 import { addMonths } from "date-fns";
 import moment from 'moment';
-import { Button } from '../../../../components/ui/button';
+import { Button } from '../../../components/ui/button';
 import { Calendar } from "@/components/ui/calendar"
 
 const MonthSelection = ({ selectedMonth }) => {
