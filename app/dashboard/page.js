@@ -7,6 +7,7 @@ import moment from 'moment';
 import { toast } from '@/components/ui/toast';
 import StatusList from './(components)/StatusList';
 import BarChart from './(components)/BarChart';
+import PieChartComponents from './(components)/PieChart';
 
 const Dashboard = () => {
 
@@ -83,14 +84,15 @@ const Dashboard = () => {
 
       <StatusList attendanceData={attendanceData} />
 
-      <div className="grid grid-cols-1 md:grid-cols-3">
+      <h2 className="my-4 font-bold text-3xl">Monthly Attendance Overview : </h2>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
 
         <div className="md:col-span-2">
           <BarChart attendanceData={attendanceData} totalPresentCountByDate={totalPresentCountByDate} />
         </div>
 
         <div className="md:col-span-1">
-
+          <PieChartComponents attendanceData={attendanceData} />
         </div>
 
       </div>

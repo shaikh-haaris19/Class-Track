@@ -40,7 +40,6 @@ const BarChartComponent = ({ attendanceData, totalPresentCountByDate }) => {
     return (
         <div className="p-5 border rounded-lg shadow-sm">
 
-            <h2 className="my-2 font-bold text-2xl">Attendance Overview</h2>
             <ResponsiveContainer width="100%" height="300">
                 <BarChart
                     data={barChartData}
