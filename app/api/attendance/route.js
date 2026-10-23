@@ -31,7 +31,7 @@ export async function GET(request) {
             )
             .where(eq(studentsTable.studentGrade, grade));
 
-
+            console.log("Attendance data fetched successfully:", response);
         return NextResponse.json(response);
 
     } catch (error) {
