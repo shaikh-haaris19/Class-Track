@@ -31,12 +31,6 @@ const SideNav = () => {
             icon: Hand,
             link: "/dashboard/attendance"
         },
-        {
-            id: 4,
-            name: "Settings",
-            icon: SettingsIcon,
-            link: "/dashboard/settings"
-        },
     ]
 
     return (

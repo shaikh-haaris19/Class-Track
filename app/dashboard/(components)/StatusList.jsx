@@ -6,8 +6,6 @@ import { GraduationCap, TrendingDown, TrendingUp } from 'lucide-react';
 
 const StatusList = ({ attendanceData }) => {
 
-    console.log(attendanceData);
-
     const [totalStudents, setTotalStudents] = useState(0);
     const [presentCount, setPresentCount] = useState(0);
     const [presentPercentage, setPresentPercentage] = useState(0);

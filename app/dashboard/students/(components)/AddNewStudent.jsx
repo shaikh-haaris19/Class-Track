@@ -129,7 +129,7 @@ const AddNewStudent = ({ refreshData }) => {
 
                         <DialogFooter>
                             <Button type="button" onClick={() => setOpen(false)} className="bg-gray-200 hover:bg-gray-300 text-gray-800 text-md px-6" variant="outline">Cancel</Button>
-                            <Button onClick={() => console.log("Save changes")} className="bg-black hover:bg-gray-800 text-white text-md px-6" type="submit" disabled={loading}>
+                            <Button className="bg-black hover:bg-gray-800 text-white text-md px-6" type="submit" disabled={loading}>
                                 {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : "Save changes"}
                             </Button>
                         </DialogFooter>

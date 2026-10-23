@@ -7,14 +7,9 @@ const BarChartComponent = ({ attendanceData, totalPresentCountByDate }) => {
 
     const [barChartData, setBarChartData] = useState([]);
 
-    console.log("totalPresentCountByDate", totalPresentCountByDate);
-    const totalStudents = getUniqueRecords(attendanceData).length;
-    console.log("Total Students:", totalStudents);
-
     const formatAttendanceData = () => {
 
         const totalStudents = getUniqueRecords(attendanceData).length;
-        console.log("Total Students:", totalStudents);
 
         const result = totalPresentCountByDate.map(item => ({
 
@@ -24,7 +19,6 @@ const BarChartComponent = ({ attendanceData, totalPresentCountByDate }) => {
 
         }))
 
-        console.log("Formatted Attendance Data:", result);
         setBarChartData(result)
 
     }

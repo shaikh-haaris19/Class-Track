@@ -12,8 +12,6 @@ export async function GET(request) {
         const grade = searchParams.get("grade");
         const month = searchParams.get("month");
 
-        console.log("Grade:", grade, "Month:", month);
-
         // LEFT JOIN STUDENTS AND ATTENDANCE TABLES TO GET ATTENDANCE DATA FOR THE SPECIFIED GRADE AND MONTH
         const response = await db.select({
             studentId: studentsTable.id,
@@ -33,7 +31,6 @@ export async function GET(request) {
             )
             .where(eq(studentsTable.studentGrade, grade));
 
-            console.log("Attendance data fetched successfully:", response);
         return NextResponse.json(response);
 
     } catch (error) {
@@ -74,7 +71,6 @@ export async function DELETE(request) {
     try {
 
         const { studentId, day, date } = await request.json();
-        console.log("Received DELETE request with data:", { studentId, day, date });
 
         const response = await db.delete(attendanceTable).where(
             and(
