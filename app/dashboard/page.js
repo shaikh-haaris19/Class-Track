@@ -40,6 +40,7 @@ const Dashboard = () => {
 
   }
 
+  // GETS {days, presentCount} FOR CHARTS BASED ON SELECTED GRADE AND MONTH
   const getTotalPresentCountByDate = async () => {
 
     try {
@@ -73,8 +74,8 @@ const Dashboard = () => {
 
       <div className="flex items-center justify-between">
 
+        {/* MONTH & GRADE SELECTION */}
         <h2 className="text-3xl font-bold">Welcome to the Dashboard</h2>
-
         <div className="flex items-center gap-4">
           <MonthSelection selectedMonth={(month) => setMonth(month)} />
           <GradeSelect selectedGrade={(grade) => setGrade(grade)} />
@@ -82,8 +83,10 @@ const Dashboard = () => {
 
       </div>
 
+      {/* STATUS OF STUDENTS (MONTHLY OVERVIEW) */}
       <StatusList attendanceData={attendanceData} />
 
+      {/* BAR CHART & PIE CHART */}
       <h2 className="my-4 font-bold text-3xl">Monthly Attendance Overview : </h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
 
