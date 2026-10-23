@@ -22,7 +22,7 @@ const StatusList = ({ attendanceData }) => {
         const presentStudents = attendanceData.filter(record => record.present === true).length;
         setPresentCount(presentStudents);
 
-        const totalPresentPercentage = (presentCount / (uniqueStudents.length * Number(today))) * 100;
+        const totalPresentPercentage = (presentStudents / (uniqueStudents.length * Number(today))) * 100;
         setPresentPercentage(totalPresentPercentage);
 
     }, [attendanceData]);

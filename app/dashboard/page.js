@@ -6,13 +6,15 @@ import axios from 'axios';
 import moment from 'moment';
 import { toast } from '@/components/ui/toast';
 import StatusList from './(components)/StatusList';
+import BarChart from './(components)/BarChart';
 
 const Dashboard = () => {
 
-  const [month, setMonth] = useState(null);
-  const [grade, setGrade] = useState(null);
+  const [month, setMonth] = useState(new Date());
+  const [grade, setGrade] = useState("10th");
 
   const [attendanceData, setAttendanceData] = useState([]);
+  const [totalPresentCountByDate, setTotalPresentCountByDate] = useState(0);
 
 
   // GETS STUDENTS ATTENDANCE DATA BASED ON SELECTED GRADE AND MONTH
@@ -37,9 +39,31 @@ const Dashboard = () => {
 
   }
 
+  const getTotalPresentCountByDate = async () => {
+
+    try {
+
+      const formattedMonth = moment(month).format("MM/YYYY");
+      const response = await axios.get(`/api/dashboard?grade=${grade}&date=${formattedMonth}`);
+
+      setTotalPresentCountByDate(response.data);
+
+    } catch (error) {
+
+      console.error("Error fetching total present count by date:", error);
+      toast.add({
+        title: "Failed to fetch total present count by date.",
+        variant: "destructive"
+      })
+
+    }
+
+  }
+
   useEffect(() => {
 
     getStudentsAttendance();
+    getTotalPresentCountByDate();
 
   }, [month, grade]);
 
@@ -58,6 +82,18 @@ const Dashboard = () => {
       </div>
 
       <StatusList attendanceData={attendanceData} />
+
+      <div className="grid grid-cols-1 md:grid-cols-3">
+
+        <div className="md:col-span-2">
+          <BarChart attendanceData={attendanceData} totalPresentCountByDate={totalPresentCountByDate} />
+        </div>
+
+        <div className="md:col-span-1">
+
+        </div>
+
+      </div>
 
     </div>
   )

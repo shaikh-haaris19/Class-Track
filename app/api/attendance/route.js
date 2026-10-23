@@ -12,6 +12,8 @@ export async function GET(request) {
         const grade = searchParams.get("grade");
         const month = searchParams.get("month");
 
+        console.log("Grade:", grade, "Month:", month);
+
         // LEFT JOIN STUDENTS AND ATTENDANCE TABLES TO GET ATTENDANCE DATA FOR THE SPECIFIED GRADE AND MONTH
         const response = await db.select({
             studentId: studentsTable.id,
